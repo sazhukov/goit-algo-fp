@@ -36,7 +36,31 @@ def plot_probabilities(probabilities):
         plt.text(sums[i], prob, f"{prob*100:.2f}%", ha='center')
 
     plt.show()
+    
+def analytical_probabilities():
+    analytical_prob = {
+        2: 1 / 36 * 100,
+        3: 2 / 36 * 100,
+        4: 3 / 36 * 100,
+        5: 4 / 36 * 100,
+        6: 5 / 36 * 100,
+        7: 6 / 36 * 100,
+        8: 5 / 36 * 100,
+        9: 4 / 36 * 100,
+        10: 3 / 36 * 100,
+        11: 2 / 36 * 100,
+        12: 1 / 36 * 100,
+    }
 
+    return analytical_prob
+
+def compare_results(simulation_prob, analytical_prob):
+    print("\nПорівняння імовірностей:")
+    for outcome, prob in analytical_prob.items():
+        simulation_prob_percentage = simulation_prob[outcome]
+        print(
+            f"Сума {outcome}: Метод Монте-Карло - {simulation_prob_percentage*100:.2f}%, Аналітичний розрахунок - {prob:.2f}%"
+        )
 
 if __name__ == "__main__":
     # Виведення результатів для різної кількості кидків
@@ -48,3 +72,6 @@ if __name__ == "__main__":
 
         # Побудова графіку
         plot_probabilities(probabilities)
+        
+    analytical_probabilities = analytical_probabilities()
+    compare_results(probabilities, analytical_probabilities)
